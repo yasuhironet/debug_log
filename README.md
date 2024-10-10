@@ -6,6 +6,9 @@ for my own personal use.
 #include <stdio.h>
 
 #include "debug_log.h"
+#include "debug_category.h"
+#include "debug_mtcp.h"
+#include "debug_backtrace.h"
 
 int
 main (int argc, char **argv)
