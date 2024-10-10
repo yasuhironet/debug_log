@@ -10,5 +10,5 @@ $(PROGNAME): $(OBJ)
 	gcc -c $<
 
 clean:
-	@rm -rf *.o *~ *.bak *.deps $(PROGNAME)
+	@rm -rf *.o *~ *.bak *.deps *.log $(PROGNAME)
 
