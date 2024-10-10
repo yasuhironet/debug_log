@@ -37,22 +37,6 @@ extern int facility;
 extern char *debug_log_filename;
 extern FILE *debug_log_file;
 
-/* category */
-#define DEBUG_DEFAULT      0
-#define DEBUG_ISIS         1
-#define DEBUG_MTCP         2
-#define DEBUG_CATEGORY_MAX 3
-
-/* default types */
-#define DEBUG_DEFAULT_LOGGING     (1ULL << 0)
-#define DEBUG_DEFAULT_BACKTRACE   (1ULL << 1)
-
-/* mtcp types */
-#define DEBUG_MTCP_SEQNUM   (1ULL << 0)
-#define DEBUG_MTCP_PROCESS  (1ULL << 1)
-#define DEBUG_MTCP_ACK      (1ULL << 2)
-#define DEBUG_MTCP_RECV     (1ULL << 3)
-
 /* config, output */
 extern uint64_t debug_config[];
 extern uint64_t debug_output;
@@ -109,38 +93,15 @@ void debug_log_init (char *progname);
                  __FILE__, __LINE__, __func__, ##__VA_ARGS__); \
   } while (0)
 
+/* default types */
+#define DEBUG_DEFAULT_LOGGING     (1ULL << 0)
+#define DEBUG_DEFAULT_BACKTRACE   (1ULL << 1)
+
 #define DEBUG_DEFAULT_LOG(type, format, ...) \
   DEBUG_LOG(DEFAULT, type, format, ##__VA_ARGS__)
+
+/* ISIS category */
 #define DEBUG_ISIS_LOG(type, format, ...) \
   DEBUG_LOG(ISIS, type, format, ##__VA_ARGS__)
-#define DEBUG_MTCP_LOG(type, format, ...) \
-  DEBUG_LOG(MTCP, type, format, ##__VA_ARGS__)
-
-#define BACKTRACE_FRAME_SIZE 128
-static inline __attribute__((always_inline)) void
-backtrace_log ()
-{
-  int nptrs;
-  void *frames[BACKTRACE_FRAME_SIZE];
-  char **strings;
-  int i;
-
-  nptrs = backtrace (frames, BACKTRACE_FRAME_SIZE);
-  DEBUG_LOG (DEFAULT, BACKTRACE, "backtrace frames: %d", nptrs);
-
-  strings = backtrace_symbols (frames, nptrs);
-  if (! strings)
-    {
-      DEBUG_LOG (DEFAULT, BACKTRACE, "backtrace_symbols: null.");
-      return;
-    }
-
-  for (i = 0; i < nptrs; i++)
-    {
-      DEBUG_LOG (DEFAULT, LOGGING, "%s", strings[i]);
-    }
-
-  free (strings);
-}
 
 #endif /*__DEBUG_LOG_H__*/

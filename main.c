@@ -2,6 +2,9 @@
 #include <stdarg.h>
 
 #include "debug_log.h"
+#include "debug_category.h"
+#include "debug_mtcp.h"
+#include "debug_backtrace.h"
 
 void a ();
 void b ();
@@ -36,7 +39,7 @@ void
 d ()
 {
   DEBUG_MTCP_LOG (PROCESS, "begin.");
-  backtrace_log ();
+  debug_backtrace ();
   DEBUG_MTCP_LOG (PROCESS, "end.");
 }
 

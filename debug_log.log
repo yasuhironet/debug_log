@@ -16,3 +16,75 @@
 2024/10/10 19:17:19 debuglog[59701]: main.c[40] d(): end.
 2024/10/10 19:17:19 debuglog[59701]: main.c[25] b(): end.
 2024/10/10 19:17:19 debuglog[59701]: main.c[16] a(): end.
+2024/10/10 19:45:44 debuglog[59797]: test test, argc: 1
+2024/10/10 19:45:44 debuglog[59797]: main.c[61] main(): argc: 1, seqnum: argv[2]: null
+2024/10/10 19:45:44 debuglog[59797]: main.c[15] a(): begin.
+2024/10/10 19:45:44 debuglog[59797]: main.c[23] b(): begin.
+2024/10/10 19:45:44 debuglog[59797]: main.c[32] c(): begin.
+2024/10/10 19:45:44 debuglog[59797]: main.c[33] c(): end.
+2024/10/10 19:45:44 debuglog[59797]: main.c[39] d(): begin.
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[121] backtrace_log(): backtrace frames: 7
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[132] backtrace_log(): ./debuglog(d+0x6e) [0x559e983ef59e]
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[132] backtrace_log(): ./debuglog(b+0x58) [0x559e983ef46e]
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[132] backtrace_log(): ./debuglog(a+0x4e) [0x559e983ef3d7]
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[132] backtrace_log(): ./debuglog(main+0x17e) [0x559e983ef8b6]
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[132] backtrace_log(): /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f3c9dd0cd90]
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[132] backtrace_log(): /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f3c9dd0ce40]
+2024/10/10 19:45:44 debuglog[59797]: debug_log.h[132] backtrace_log(): ./debuglog(_start+0x25) [0x559e983ef2c5]
+2024/10/10 19:45:44 debuglog[59797]: main.c[41] d(): end.
+2024/10/10 19:45:44 debuglog[59797]: main.c[26] b(): end.
+2024/10/10 19:45:44 debuglog[59797]: main.c[17] a(): end.
+2024/10/10 19:53:08 debuglog[59968]: test test, argc: 1
+2024/10/10 19:53:08 debuglog[59968]: main.c[63] main(): argc: 1, seqnum: argv[2]: null
+2024/10/10 19:53:08 debuglog[59968]: main.c[17] a(): begin.
+2024/10/10 19:53:08 debuglog[59968]: main.c[25] b(): begin.
+2024/10/10 19:53:08 debuglog[59968]: main.c[34] c(): begin.
+2024/10/10 19:53:08 debuglog[59968]: main.c[35] c(): end.
+2024/10/10 19:53:08 debuglog[59968]: main.c[41] d(): begin.
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[14] debug_backtrace(): backtrace frames: 7
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(d+0x6e) [0x560a129f259e]
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(b+0x58) [0x560a129f246e]
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(a+0x4e) [0x560a129f23d7]
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(main+0x17e) [0x560a129f28b6]
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[25] debug_backtrace(): /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7efc1d02cd90]
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[25] debug_backtrace(): /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7efc1d02ce40]
+2024/10/10 19:53:08 debuglog[59968]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(_start+0x25) [0x560a129f22c5]
+2024/10/10 19:53:08 debuglog[59968]: main.c[43] d(): end.
+2024/10/10 19:53:08 debuglog[59968]: main.c[28] b(): end.
+2024/10/10 19:53:08 debuglog[59968]: main.c[19] a(): end.
+2024/10/10 19:53:11 debuglog[59969]: test test, argc: 1
+2024/10/10 19:53:11 debuglog[59969]: main.c[63] main(): argc: 1, seqnum: argv[2]: null
+2024/10/10 19:53:11 debuglog[59969]: main.c[17] a(): begin.
+2024/10/10 19:53:11 debuglog[59969]: main.c[25] b(): begin.
+2024/10/10 19:53:11 debuglog[59969]: main.c[34] c(): begin.
+2024/10/10 19:53:11 debuglog[59969]: main.c[35] c(): end.
+2024/10/10 19:53:11 debuglog[59969]: main.c[41] d(): begin.
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[14] debug_backtrace(): backtrace frames: 7
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(d+0x6e) [0x5569d047559e]
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(b+0x58) [0x5569d047546e]
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(a+0x4e) [0x5569d04753d7]
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(main+0x17e) [0x5569d04758b6]
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[25] debug_backtrace(): /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f5848605d90]
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[25] debug_backtrace(): /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f5848605e40]
+2024/10/10 19:53:11 debuglog[59969]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(_start+0x25) [0x5569d04752c5]
+2024/10/10 19:53:11 debuglog[59969]: main.c[43] d(): end.
+2024/10/10 19:53:11 debuglog[59969]: main.c[28] b(): end.
+2024/10/10 19:53:11 debuglog[59969]: main.c[19] a(): end.
+2024/10/10 19:53:15 debuglog[59971]: test test, argc: 1
+2024/10/10 19:53:15 debuglog[59971]: main.c[63] main(): argc: 1, seqnum: argv[2]: null
+2024/10/10 19:53:15 debuglog[59971]: main.c[17] a(): begin.
+2024/10/10 19:53:15 debuglog[59971]: main.c[25] b(): begin.
+2024/10/10 19:53:15 debuglog[59971]: main.c[34] c(): begin.
+2024/10/10 19:53:15 debuglog[59971]: main.c[35] c(): end.
+2024/10/10 19:53:15 debuglog[59971]: main.c[41] d(): begin.
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[14] debug_backtrace(): backtrace frames: 7
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(d+0x6e) [0x5561b6ef659e]
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(b+0x58) [0x5561b6ef646e]
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(a+0x4e) [0x5561b6ef63d7]
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(main+0x17e) [0x5561b6ef68b6]
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[25] debug_backtrace(): /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f2510d75d90]
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[25] debug_backtrace(): /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f2510d75e40]
+2024/10/10 19:53:15 debuglog[59971]: debug_backtrace.h[25] debug_backtrace(): ./debuglog(_start+0x25) [0x5561b6ef62c5]
+2024/10/10 19:53:15 debuglog[59971]: main.c[43] d(): end.
+2024/10/10 19:53:15 debuglog[59971]: main.c[28] b(): end.
+2024/10/10 19:53:15 debuglog[59971]: main.c[19] a(): end.
