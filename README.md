@@ -28,8 +28,8 @@ main (int argc, char **argv)
 }
 ```
 
-Although it is not from the above example, the debug log messages
-like below can be easily
+Although it is not exactly from the above example,
+the debug log messages like below can be easily
 output to (any combinations of) stdout/stderr/syslog/file.
 
 ```
