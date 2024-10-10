@@ -4,12 +4,16 @@
 #include <stdlib.h>
 #include <syslog.h>
 #include <string.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <time.h>
 
 #include "debug_log.h"
 
 uint64_t debug_config[DEBUG_CATEGORY_MAX];
 uint64_t debug_output;
+
+pid_t pid = 0;
 
 /* syslog */
 char *ident = "debug_log";
@@ -44,6 +48,7 @@ debug_vlog (const char *format, va_list *args)
   if (FLAG_CHECK (debug_output, DEBUG_OUTPUT_STDOUT))
     {
       ret = fprintf (stdout, "%s ", timebuf);
+      ret += fprintf (stdout, "%s[%d]: ", ident, pid);
       ret += vfprintf (stdout, format, args[DEBUG_INDEX_STDOUT]);
       ret += fprintf (stdout, "\n");
       fflush (stdout);
@@ -51,10 +56,11 @@ debug_vlog (const char *format, va_list *args)
 
   if (FLAG_CHECK (debug_output, DEBUG_OUTPUT_STDERR))
     {
-      ret = fprintf (stdout, "%s ", timebuf);
-      ret += vfprintf (stdout, format, args[DEBUG_INDEX_STDERR]);
-      ret += fprintf (stdout, "\n");
-      fflush (stdout);
+      ret = fprintf (stderr, "%s ", timebuf);
+      ret += fprintf (stderr, "%s[%d]: ", ident, pid);
+      ret += vfprintf (stderr, format, args[DEBUG_INDEX_STDERR]);
+      ret += fprintf (stderr, "\n");
+      fflush (stderr);
     }
 
   if (FLAG_CHECK (debug_output, DEBUG_OUTPUT_SYSLOG))
@@ -66,6 +72,7 @@ debug_vlog (const char *format, va_list *args)
   if (FLAG_CHECK (debug_output, DEBUG_OUTPUT_FILE))
     {
       ret = fprintf (debug_log_file, "%s ", timebuf);
+      ret += fprintf (debug_log_file, "%s[%d]: ", ident, pid);
       ret += vfprintf (debug_log_file, format, args[DEBUG_INDEX_FILE]);
       ret += fprintf (debug_log_file, "\n");
       fflush (debug_log_file);
@@ -147,5 +154,22 @@ debug_log_rotate_file ()
     debug_log_file = fopen (debug_log_filename, "a");
   else
     debug_log_file = NULL;
+}
+
+void
+debug_log_init(char *progname)
+{
+  char *p;
+  if (progname)
+    {
+      p = rindex (progname, '/');
+      if (p)
+        p++;
+      if (p && strlen (p))
+        ident = p;
+      else
+        ident = progname;
+    }
+  pid = getpid ();
 }
 

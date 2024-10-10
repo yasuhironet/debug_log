@@ -62,6 +62,8 @@ void debug_log_open_file (char *filename);
 void debug_log_close_file ();
 void debug_log_rotate_file ();
 
+void debug_log_init (char *progname);
+
 #define DEBUG_OUTPUT_SET(output_type) \
   do { \
     FLAG_SET (debug_output, DEBUG_OUTPUT_ ## output_type); \
@@ -98,7 +100,8 @@ void debug_log_rotate_file ();
   do { \
     if (FLAG_CHECK (DEBUG_CONFIG(cate), \
                     DEBUG_TYPE(cate, type))) \
-      debug_log (format, ##__VA_ARGS__); \
+      debug_log ("%s[%d] %s(): " format, \
+                 __FILE__, __LINE__, __func__, ##__VA_ARGS__); \
   } while (0)
 
 #define DEBUG_DEFAULT_LOG(type, format, ...) \
