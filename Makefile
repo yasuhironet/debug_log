@@ -1,13 +1,14 @@
+PROGNAME=debuglog
 OBJ=main.o debug_log.o
 
 .PHONY: all clean
 
-debuglog: $(OBJ)
+$(PROGNAME): $(OBJ)
 	gcc -o $@ $^
 
 .c.o:
 	gcc -c $<
 
 clean:
-	@rm -rf *.o *~ *.bak *.deps
+	@rm -rf *.o *~ *.bak *.deps $(PROGNAME)
 
