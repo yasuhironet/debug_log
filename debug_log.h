@@ -15,7 +15,7 @@
 
 /* output index */
 #define DEBUG_INDEX_STDOUT  0
-#define DEBUG_IDNEX_STDERR  1
+#define DEBUG_INDEX_STDERR  1
 #define DEBUG_INDEX_SYSLOG  2
 #define DEBUG_INDEX_FILE    3
 #define DEBUG_INDEX_MAX     4
