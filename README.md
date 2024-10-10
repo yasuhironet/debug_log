@@ -1,6 +1,6 @@
 # debug_log: A Portable Debug Logging Module with User-defined Category and Type Switches.
 
-for personal use.
+for my own personal use.
 
 ```
 #include <stdio.h>
@@ -28,27 +28,27 @@ main (int argc, char **argv)
 }
 ```
 
-Although it is not exactly from the above example,
+Although it is not exactly produced from the above example,
 the debug log messages like below can be easily
 output to (any combinations of) stdout/stderr/syslog/file.
 
 ```
-2024/10/10 18:23:17 debuglog[59320]: test test, argc: 1
-2024/10/10 18:23:17 debuglog[59320]: main.c[60] main(): argc: 1, seqnum: argv[2]: null
-2024/10/10 18:23:17 debuglog[59320]: main.c[14] a(): begin.
-2024/10/10 18:23:17 debuglog[59320]: main.c[22] b(): begin.
-2024/10/10 18:23:17 debuglog[59320]: main.c[31] c(): begin.
-2024/10/10 18:23:17 debuglog[59320]: main.c[32] c(): end.
-2024/10/10 18:23:17 debuglog[59320]: main.c[38] d(): begin.
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[129] backtrace_log(): backtrace frames: 7
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[140] backtrace_log(): ./debuglog(+0x159e) [0x55865ab1759e]
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[140] backtrace_log(): ./debuglog(+0x146e) [0x55865ab1746e]
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[140] backtrace_log(): ./debuglog(+0x13d7) [0x55865ab173d7]
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[140] backtrace_log(): ./debuglog(+0x18b6) [0x55865ab178b6]
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[140] backtrace_log(): /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f5707e77d90]
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[140] backtrace_log(): /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f5707e77e40]
-2024/10/10 18:23:17 debuglog[59320]: debug_log.h[140] backtrace_log(): ./debuglog(+0x12c5) [0x55865ab172c5]
-2024/10/10 18:23:17 debuglog[59320]: main.c[40] d(): end.
-2024/10/10 18:23:17 debuglog[59320]: main.c[25] b(): end.
-2024/10/10 18:23:17 debuglog[59320]: main.c[16] a(): end.
+2024/10/10 19:17:19 debuglog[59701]: test test, argc: 1
+2024/10/10 19:17:19 debuglog[59701]: main.c[60] main(): argc: 1, seqnum: argv[2]: null
+2024/10/10 19:17:19 debuglog[59701]: main.c[14] a(): begin.
+2024/10/10 19:17:19 debuglog[59701]: main.c[22] b(): begin.
+2024/10/10 19:17:19 debuglog[59701]: main.c[31] c(): begin.
+2024/10/10 19:17:19 debuglog[59701]: main.c[32] c(): end.
+2024/10/10 19:17:19 debuglog[59701]: main.c[38] d(): begin.
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[129] backtrace_log(): backtrace frames: 7
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[140] backtrace_log(): ./debuglog(d+0x6e) [0x5595b17b959e]
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[140] backtrace_log(): ./debuglog(b+0x58) [0x5595b17b946e]
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[140] backtrace_log(): ./debuglog(a+0x4e) [0x5595b17b93d7]
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[140] backtrace_log(): ./debuglog(main+0x17e) [0x5595b17b98b6]
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[140] backtrace_log(): /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f6865fa0d90]
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[140] backtrace_log(): /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f6865fa0e40]
+2024/10/10 19:17:19 debuglog[59701]: debug_log.h[140] backtrace_log(): ./debuglog(_start+0x25) [0x5595b17b92c5]
+2024/10/10 19:17:19 debuglog[59701]: main.c[40] d(): end.
+2024/10/10 19:17:19 debuglog[59701]: main.c[25] b(): end.
+2024/10/10 19:17:19 debuglog[59701]: main.c[16] a(): end.
 ```
