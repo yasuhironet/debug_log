@@ -6,9 +6,12 @@ OBJ=main.o debug_log.o
 $(PROGNAME): $(OBJ)
 	gcc -o $@ $^
 
+%.E: %.c
+	gcc -E -C $< > $@
+
 .c.o:
 	gcc -c $<
 
 clean:
-	@rm -rf *.o *~ *.bak *.deps *.log $(PROGNAME)
+	@rm -rf *.o *.E *~ *.bak *.deps *.log $(PROGNAME)
 

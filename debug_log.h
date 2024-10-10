@@ -38,7 +38,15 @@ extern FILE *debug_log_file;
 
 /* category */
 #define DEBUG_DEFAULT      0
-#define DEBUG_CATEGORY_MAX 1
+#define DEBUG_ISIS         1
+#define DEBUG_MTCP         2
+#define DEBUG_CATEGORY_MAX 3
+
+/* type */
+#define DEBUG_MTCP_SEQNUM   (1ULL << 0)
+#define DEBUG_MTCP_PROCESS  (1ULL << 1)
+#define DEBUG_MTCP_ACK      (1ULL << 2)
+#define DEBUG_MTCP_RECV     (1ULL << 3)
 
 /* config, output */
 extern uint64_t debug_config[];
@@ -53,5 +61,51 @@ void debug_log_close_syslog ();
 void debug_log_open_file (char *filename);
 void debug_log_close_file ();
 void debug_log_rotate_file ();
+
+#define DEBUG_OUTPUT_SET(output_type) \
+  do { \
+    FLAG_SET (debug_output, DEBUG_OUTPUT_ ## output_type); \
+  } while (0)
+
+#define DEBUG_OUTPUT_UNSET(output_type) \
+  do { \
+    FLAG_UNSET (debug_output, DEBUG_OUTPUT_ ## output_type); \
+  } while (0)
+
+#define DEBUG_OUTPUT_FILE_SET(filename) \
+  do { \
+    debug_log_open_file (filename); \
+  } while (0)
+#define DEBUG_OUTPUT_FILE_UNSET() \
+  do { \
+    debug_log_close_file (); \
+  } while (0)
+
+#define DEBUG_CONFIG(cate)      (debug_config[DEBUG_ ## cate])
+#define DEBUG_TYPE(cate, type)  (DEBUG_ ## cate ## _ ## type)
+
+#define DEBUG_SET(cate, type) \
+  do { \
+    FLAG_SET (DEBUG_CONFIG(cate), DEBUG_TYPE(cate, type)); \
+  } while (0)
+
+#define DEBUG_UNSET(cate, type) \
+  do { \
+    FLAG_UNSET (DEBUG_CONFIG(cate), DEBUG_TYPE(cate, type)); \
+  } while (0)
+
+#define DEBUG_LOG(cate, type, format, ...) \
+  do { \
+    if (FLAG_CHECK (DEBUG_CONFIG(cate), \
+                    DEBUG_TYPE(cate, type))) \
+      debug_log (format, ##__VA_ARGS__); \
+  } while (0)
+
+#define DEBUG_DEFAULT_LOG(type, format, ...) \
+  DEBUG_LOG(DEFAULT, type, format, ##__VA_ARGS__)
+#define DEBUG_ISIS_LOG(type, format, ...) \
+  DEBUG_LOG(ISIS, type, format, ##__VA_ARGS__)
+#define DEBUG_MTCP_LOG(type, format, ...) \
+  DEBUG_LOG(MTCP, type, format, ##__VA_ARGS__)
 
 #endif /*__DEBUG_LOG_H__*/
