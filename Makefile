@@ -4,13 +4,13 @@ OBJ=main.o debug_log.o
 .PHONY: all clean
 
 $(PROGNAME): $(OBJ)
-	gcc -o $@ $^
+	gcc -g -O0 -o $@ $^
 
 %.E: %.c
 	gcc -E -C $< > $@
 
 .c.o:
-	gcc -c $<
+	gcc -g -O0 -c $<
 
 clean:
 	@rm -rf *.o *.E *~ *.bak *.deps *.log $(PROGNAME)

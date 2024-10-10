@@ -157,7 +157,7 @@ debug_log_rotate_file ()
 }
 
 void
-debug_log_init(char *progname)
+debug_log_init (char *progname)
 {
   char *p;
   if (progname)
@@ -171,5 +171,36 @@ debug_log_init(char *progname)
         ident = progname;
     }
   pid = getpid ();
+
+  DEBUG_SET (DEFAULT, LOGGING);
+  DEBUG_SET (DEFAULT, BACKTRACE);
 }
 
+#if 0
+#define BACKTRACE_FRAME_SIZE 128
+static inline __attribute__((always_inline)) void
+backtrace_log ()
+{
+  int nptrs;
+  void *frames[BACKTRACE_FRAME_SIZE];
+  char **strings;
+  int i;
+
+  nptrs = backtrace (frames, BACKTRACE_FRAME_SIZE);
+  DEBUG_LOG (DEFAULT, BACKTRACE, "backtrace frames: %d", nptrs);
+
+  strings = backtrace_symbols (frames, nptrs);
+  if (! strings)
+    {
+      DEBUG_LOG (DEFAULT, BACKTRACE, "backtrace_symbols: null.");
+      return;
+    }
+
+  for (i = 0; i < nptrs; i++)
+    {
+      DEBUG_LOG (DEFAULT, LOGGING, "%s", strings[i]);
+    }
+
+  free (strings);
+}
+#endif

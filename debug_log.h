@@ -2,7 +2,8 @@
 #define __DEBUG_LOG_H__
 
 #include <stdint.h> //uint64_t
-#include <linux/limits.h> //PATH_MAX
+#include <execinfo.h> //backtrace
+#include <stdlib.h> //free in backtrace
 
 #ifndef FLAG_SET
 #define FLAG_CHECK(V,F) ((V) & (F))
@@ -42,7 +43,11 @@ extern FILE *debug_log_file;
 #define DEBUG_MTCP         2
 #define DEBUG_CATEGORY_MAX 3
 
-/* type */
+/* default types */
+#define DEBUG_DEFAULT_LOGGING     (1ULL << 0)
+#define DEBUG_DEFAULT_BACKTRACE   (1ULL << 1)
+
+/* mtcp types */
 #define DEBUG_MTCP_SEQNUM   (1ULL << 0)
 #define DEBUG_MTCP_PROCESS  (1ULL << 1)
 #define DEBUG_MTCP_ACK      (1ULL << 2)
@@ -110,5 +115,32 @@ void debug_log_init (char *progname);
   DEBUG_LOG(ISIS, type, format, ##__VA_ARGS__)
 #define DEBUG_MTCP_LOG(type, format, ...) \
   DEBUG_LOG(MTCP, type, format, ##__VA_ARGS__)
+
+#define BACKTRACE_FRAME_SIZE 128
+static inline __attribute__((always_inline)) void
+backtrace_log ()
+{
+  int nptrs;
+  void *frames[BACKTRACE_FRAME_SIZE];
+  char **strings;
+  int i;
+
+  nptrs = backtrace (frames, BACKTRACE_FRAME_SIZE);
+  DEBUG_LOG (DEFAULT, BACKTRACE, "backtrace frames: %d", nptrs);
+
+  strings = backtrace_symbols (frames, nptrs);
+  if (! strings)
+    {
+      DEBUG_LOG (DEFAULT, BACKTRACE, "backtrace_symbols: null.");
+      return;
+    }
+
+  for (i = 0; i < nptrs; i++)
+    {
+      DEBUG_LOG (DEFAULT, LOGGING, "%s", strings[i]);
+    }
+
+  free (strings);
+}
 
 #endif /*__DEBUG_LOG_H__*/

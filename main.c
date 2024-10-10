@@ -36,6 +36,7 @@ void
 d ()
 {
   DEBUG_MTCP_LOG (PROCESS, "begin.");
+  backtrace_log ();
   DEBUG_MTCP_LOG (PROCESS, "end.");
 }
 
