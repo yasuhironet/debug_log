@@ -1,2 +1,5 @@
 *.o
 debuglog
+
+debug_log.log
+
